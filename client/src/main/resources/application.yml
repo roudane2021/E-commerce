@@ -1,0 +1,7 @@
+server:
+  port: 9004
+
+webservice:
+  produit:
+    name: ws-produits
+    url: localhost:9002

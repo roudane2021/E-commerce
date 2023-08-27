@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import ma.roudane.produit.model.ProduitEntity;
 import ma.roudane.produit.service.produit.IprouduitApplication;
 import ma.roudane.produit.service.produit.mapper.IProduitApplicationMapper;
+import ma.roudane.produit.service.utils.AppConfigProperties;
 import ma.roudane.produit.web.exceptions.ProductNotFoundException;
 import ma.roudane.produit.web.product.dto.ProduitDto;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +17,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "Produits")
+@RequestMapping(value = "produits")
 @AllArgsConstructor
 public class ProductController {
 
 
     private final IProduitApplicationMapper mapper;
     private final IprouduitApplication application;
+    private final AppConfigProperties appConfigProperties;
 
     // Affiche la liste de tous les produits disponibles
     @GetMapping()
@@ -32,7 +34,9 @@ public class ProductController {
 
         if(products.isEmpty()) throw new ProductNotFoundException("Aucun produit n'est disponible à la vente");
 
-        return products;
+        List<ProduitDto> listLimit = products.subList(0, this.appConfigProperties.getMaxProduits());
+
+        return listLimit;
 
     }
 

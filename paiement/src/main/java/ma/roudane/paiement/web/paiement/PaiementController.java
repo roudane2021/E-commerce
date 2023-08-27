@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/paiement")
+@RequestMapping(value = "/paiements")
 @AllArgsConstructor
 public class PaiementController {
 

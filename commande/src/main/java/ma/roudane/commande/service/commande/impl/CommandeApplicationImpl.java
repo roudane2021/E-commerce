@@ -9,6 +9,7 @@ import ma.roudane.commande.service.commande.models.Commande;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,7 +27,8 @@ public class CommandeApplicationImpl implements ICommandeApplication {
 
     @Override
     public Optional<Commande> getCommande(Integer id) {
-        Optional<Commande> commande = commandesDao.findById(id).map(commandeApplicationMapper::CommandeEntityToApp);
-        return commande;
+        Optional<CommandeEntity> commande = commandesDao.findById(id);
+        List<CommandeEntity> list = commandesDao.findAll();
+        return commande.map(commandeApplicationMapper::CommandeEntityToApp);
     }
 }

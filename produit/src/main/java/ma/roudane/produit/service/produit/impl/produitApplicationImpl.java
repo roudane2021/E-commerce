@@ -1,7 +1,7 @@
 package ma.roudane.produit.service.produit.impl;
 
 import lombok.AllArgsConstructor;
-import ma.roudane.produit.dao.ProduitDao;
+import ma.roudane.produit.dao.IProduitDao;
 import ma.roudane.produit.service.produit.IprouduitApplication;
 import ma.roudane.produit.service.produit.mapper.IProduitApplicationMapper;
 import ma.roudane.produit.service.produit.models.Produit;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class produitApplicationImpl  implements IprouduitApplication {
 
-    private final ProduitDao productDao;
+    private final IProduitDao productDao;
     private final IProduitApplicationMapper mapper;
     @Override
     public List<Produit> produits() {

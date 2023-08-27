@@ -1,8 +1,6 @@
 package ma.roudane.commande.web.commande;
 
 import lombok.AllArgsConstructor;
-import ma.roudane.commande.dao.ICommandesDao;
-import ma.roudane.commande.model.CommandeEntity;
 import ma.roudane.commande.service.commande.ICommandeApplication;
 import ma.roudane.commande.service.commande.mappers.ICommandeApplicationMapper;
 import ma.roudane.commande.service.commande.models.Commande;
@@ -25,6 +23,7 @@ public class CommandeController {
     private final ICommandeApplication commandeApplication;
     private final ICommandeApplicationMapper commandeApplicationMapper;
 
+
     @PostMapping()
     public ResponseEntity<CommandeDto> ajouterCommande(@RequestBody final CommandeDto commandeDto) {
         Commande commandeNew = commandeApplication.saveCommande(commandeApplicationMapper.CommandeDtoToApp(commandeDto));
@@ -35,7 +34,7 @@ public class CommandeController {
         return new ResponseEntity<CommandeDto>(commandeApplicationMapper.CommandeAppToDto(commandeNew), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping("/{id}")
     public Optional<CommandeDto> recupererUneCommande(@PathVariable int id) {
 
         Optional<CommandeDto> commande = commandeApplication.getCommande(id).map(commandeApplicationMapper::CommandeAppToDto);
@@ -46,4 +45,5 @@ public class CommandeController {
 
         return commande;
     }
+
 }

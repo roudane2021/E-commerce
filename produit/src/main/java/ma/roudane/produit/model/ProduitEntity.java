@@ -7,10 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class ProduitEntity {
     @Id
