@@ -1,7 +1,11 @@
 server:
   port: 9004
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9102/eureka/
 
 webservice:
   produit:
-    name: ws-produits
+    name: microservice-produits
     url: localhost:9002

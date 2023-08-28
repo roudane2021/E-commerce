@@ -6,12 +6,14 @@ import ma.roudane.paiement.model.PaiementEntity;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
 @AllArgsConstructor
+@EnableDiscoveryClient
 public class PaiementApplication implements CommandLineRunner {
 
 

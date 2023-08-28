@@ -7,6 +7,7 @@ import ma.roudane.commande.service.commande.models.Commande;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @SpringBootApplication
 @AllArgsConstructor
+@EnableDiscoveryClient
 public class CommandeApplication  implements CommandLineRunner {
 
 	private final ICommandesDao commandesDao;
