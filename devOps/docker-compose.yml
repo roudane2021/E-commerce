@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:13.2
+    container_name: postgres_container
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keyclocck_db
+      POSTGRES_USER: roudane
+      POSTGRES_PASSWORD: roudane
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - local-keycloak
+
+  keycloak:
+    depends_on:
+      - postgres
+    container_name: local_keycloak
+    image: jboss/keycloak:15.0.0
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: keyclocck_db
+      DB_USER: roudane
+      DB_PASSWORD: roudane
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+    ports:
+      - 9696:8080
+    restart: unless-stopped
+    networks:
+      - local-keycloak
+
+networks:
+  local-keycloak:
+volumes:
+  postgres_data:
