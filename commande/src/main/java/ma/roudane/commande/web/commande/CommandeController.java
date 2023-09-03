@@ -1,6 +1,8 @@
 package ma.roudane.commande.web.commande;
 
 import lombok.AllArgsConstructor;
+import ma.roudane.commande.dao.ICommandesDao;
+import ma.roudane.commande.model.CommandeEntity;
 import ma.roudane.commande.service.commande.ICommandeApplication;
 import ma.roudane.commande.service.commande.mappers.ICommandeApplicationMapper;
 import ma.roudane.commande.service.commande.models.Commande;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,6 +25,7 @@ public class CommandeController {
 
     private final ICommandeApplication commandeApplication;
     private final ICommandeApplicationMapper commandeApplicationMapper;
+    private final ICommandesDao commandesDao;
 
 
     @PostMapping()
@@ -44,6 +48,13 @@ public class CommandeController {
         }
 
         return commande;
+    }
+
+    @GetMapping()
+    public List<CommandeEntity> all() {
+
+
+        return commandesDao.findAll();
     }
 
 }
